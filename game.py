@@ -9,6 +9,8 @@ from pygame.locals import *
 from pygame.color import THECOLORS
 
 import box
+import manager
+import gameobject
 
 class MyBox(box.Box):
 	def __init__(self, screen):
@@ -21,15 +23,20 @@ def main():
 	pygame.display.set_caption('Game!')
 
 	screen.fill(THECOLORS["black"])
-
-	box1 = MyBox(screen)
+	
+	manage = manager.ObjectManager()
+	manage.add(MyBox(screen))
 	
 	clock = pygame.time.Clock()
 	# The Main Event Loop
 	done = False
 	while not done:
+		# Update Objects
+		manage.update()
+		
 		# Drawing:
-		box1.draw()
+		manage.draw()
+		
 		# Drawing finished this iteration?  Update the screen
 		pygame.display.update()
 
