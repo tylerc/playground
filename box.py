@@ -6,7 +6,7 @@ import gameobject
 
 class Box(gameobject.GameObject):
 	def __init__(self, screen, size=(50,50), pos=(20,20), background=THECOLORS['black'], boxcolor=THECOLORS['white']):
-		gameobject.GameObject.__init__(self)
+		gameobject.GameObject.__init__(self,name='Box')
 		self.screen = screen
 		screensize = self.screen.get_size()
 		self.screenwidth = screensize[0]
