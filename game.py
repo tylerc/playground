@@ -12,10 +12,6 @@ import box
 import manager
 import gameobject
 
-class MyBox(box.Box):
-	def __init__(self, screen):
-		box.Box.__init__(self, screen, (50,50), (32,32), THECOLORS['black'], THECOLORS['white'])
-
 def main():
 	WINSIZE = 640,480
 	pygame.init()
@@ -25,7 +21,7 @@ def main():
 	screen.fill(THECOLORS["black"])
 	
 	manage = manager.ObjectManager()
-	manage.add(MyBox(screen))
+	manage.add(box.Box(screen))
 	
 	clock = pygame.time.Clock()
 	# The Main Event Loop

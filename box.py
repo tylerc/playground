@@ -1,14 +1,17 @@
 import pygame
 from pygame.locals import *
+from pygame.color import THECOLORS
 
-class Box:
-	def __init__(self, screen, size, pos, background, boxcolor):
+import gameobject
+
+class Box(gameobject.GameObject):
+	def __init__(self, screen, size=(50,50), pos=(20,20), background=THECOLORS['black'], boxcolor=THECOLORS['white']):
+		gameobject.GameObject.__init__(self)
 		self.screen = screen
 		screensize = self.screen.get_size()
 		self.screenwidth = screensize[0]
 		self.screenheight = screensize[1]
 		# Position of Box on the Screen
-		# Box will start roughly in the middle of the screen.
 		self.x = pos[0]
 		self.y = pos[1]
 		self.width = size[0]
@@ -18,6 +21,8 @@ class Box:
 		self.rect = pygame.rect.Rect(self.x, self.y, self.width, self.height)
 
 	def draw(self):
+		# Clear the old box
+		pygame.draw.rect(self.screen, self.bgcolor, self.rect)
 		# Draw the new box
 		self.rect = pygame.rect.Rect(self.x, self.y, self.width, self.height)
 		pygame.draw.rect( self.screen, self.boxcolor, self.rect )

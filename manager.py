@@ -5,13 +5,7 @@ class ObjectManager:
 		self.objs += [obj]
 	def update(self):
 		for i in self.objs:
-			try:
-				i.update()
-			except AttributeError:
-				pass
+			i.update()
 	def draw(self):
 		for i in self.objs:
-			try:
-				i.draw()
-			except AttributeError:
-				pass
+			i.draw()
