@@ -12,6 +12,15 @@ import box
 import manager
 import gameobject
 
+class MyBox(box.Box):
+	def __init__(self, screen):
+		box.Box.__init__(self, screen)
+	def update(self):
+		if pygame.key.get_pressed()[K_UP]: self.y -= 1
+		if pygame.key.get_pressed()[K_DOWN]: self.y += 1
+		if pygame.key.get_pressed()[K_LEFT]: self.x -= 1
+		if pygame.key.get_pressed()[K_RIGHT]: self.x += 1
+
 def main():
 	WINSIZE = 640,480
 	pygame.init()
@@ -21,7 +30,8 @@ def main():
 	screen.fill(THECOLORS["black"])
 	
 	manage = manager.ObjectManager()
-	manage.add(box.Box(screen))
+	manage.add(MyBox(screen))
+	manage.add(box.Box(screen, boxcolor=THECOLORS['red'], pos=(90,90)))
 	
 	clock = pygame.time.Clock()
 	# The Main Event Loop
