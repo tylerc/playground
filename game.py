@@ -29,7 +29,6 @@ class Target(box.Box):
                 box.Box.__init__(self,pos=(100,100),boxcolor=THECOLORS['red'])
         def collision(self,obj):
                 if obj.name == 'Player':
-                        print 'collide'
                         self.manager.destroy(self)
 def main():
         world = manager.World()

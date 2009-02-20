@@ -40,8 +40,8 @@ class World:
 				j.collision(i)
 				#print 'Collision between ' + i.name + ' ' + j.name
 	def draw(self):
+		self.screen.fill(THECOLORS['black'])
 		for i in self.objs:
-
 			i.draw()
 	def destroy(self, obj):
 		obj.destroy()
