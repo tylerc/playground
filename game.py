@@ -48,6 +48,10 @@ class Bullet(box.Box):
 		
 	def destroy(self):
 		Bullet.numOf -= 1
+		
+	def collision(self,obj):
+		if obj.name == 'Border':
+			self.manager.destroy(self)
 
 def main():
         world = manager.World()

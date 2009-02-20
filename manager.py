@@ -4,6 +4,9 @@ from pygame.color import THECOLORS
 
 import gameobject
 
+class Border:
+	name = 'Border'
+
 class World:
 	def __init__(self):
 		self.objs = []
@@ -25,6 +28,7 @@ class World:
 
 		# Check for collisions
 		for i in self.objs:
+			if i.x < 0 or i.y < 0 or i.x > self.WINSIZE[0] or i.y > self.WINSIZE[1]: i.collision(Border)
 			for j in self.objs:
 				if i == j:
 					break
