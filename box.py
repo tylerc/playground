@@ -5,9 +5,8 @@ from pygame.color import THECOLORS
 import gameobject
 
 class Box(gameobject.GameObject):
-	def __init__(self, screen, size=(50,50), pos=(20,20), background=THECOLORS['black'], boxcolor=THECOLORS['white']):
+	def __init__(self, size=(50,50), pos=(20,20), background=THECOLORS['black'], boxcolor=THECOLORS['white']):
 		gameobject.GameObject.__init__(self,name='Box')
-		self.screen = screen
 		screensize = self.screen.get_size()
 		self.screenwidth = screensize[0]
 		self.screenheight = screensize[1]
@@ -32,3 +31,4 @@ class Box(gameobject.GameObject):
 		
 	def setBoxColor(self, color):
 		self.boxcolor=color
+
