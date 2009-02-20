@@ -21,7 +21,7 @@ class Box(gameobject.GameObject):
 
 	def draw(self):
 		# Clear the old box
-		pygame.draw.rect(self.screen, self.bgcolor, self.rect)
+		# pygame.draw.rect(self.screen, self.bgcolor, self.rect)
 		# Draw the new box
 		self.rect = pygame.rect.Rect(self.x, self.y, self.width, self.height)
 		pygame.draw.rect( self.screen, self.boxcolor, self.rect )
