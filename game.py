@@ -24,7 +24,7 @@ class Player(box.Box):
 		if pygame.key.get_pressed()[K_RIGHT]: self.x += self.speed
 		if pygame.key.get_pressed()[K_SPACE]: 
 			if Bullet.numOf < 1:
-				Bullet()
+				Bullet(pos=(self.x+self.width,self.y+self.height/2))
 
 class Target(box.Box):
         def __init__(self):
