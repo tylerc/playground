@@ -22,27 +22,18 @@ class World:
 	def add(self,obj):
 		self.objs += [obj]
 	def update(self):
+                for i in self.objs:
+                        if i.status == 0:
+                                self.destroy(i)
+
                 # Update Objects
 		for i in self.objs:
 			i.update()
 
-		# Check for collisions
 		for i in self.objs:
-			if i.x < 0 or i.y < 0 or i.x > self.WINSIZE[0] or i.y > self.WINSIZE[1]: i.collision(Border)
-			for j in self.objs:
-				if i == j:
-					break
-				if (i.y + i.height) < (j.y):
-					break
-				if (i.y) > (j.y + j.height):
-					break
-				if (i.x + i.width) < (j.x):
-					break
-				if (i.x) > (j.x + j.width):
-					break
-				i.collision(j)
-				j.collision(i)
-				#print 'Collision between ' + i.name + ' ' + j.name
+                        if i.x < 0 or i.x > self.WINSIZE[0] or i.y < 0 or i.y > self.WINSIZE[1]:
+                                i.status = 0
+
 	def draw(self):
 		self.screen.fill(THECOLORS['black'])
 		for i in self.objs:
