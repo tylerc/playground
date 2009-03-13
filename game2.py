@@ -26,7 +26,10 @@ class Player(box.Box):
                 self.left = 0
                 self.right = 0
 	#def draw(self)
+        def destroy(self):
+                manager.MyFont("PWNED",(50,50),status=20)
         def update(self):
+                #self.manager.text = self.manager.font.render(str(self.y), 1, THECOLORS['blue'], THECOLORS['black'])
                 if self.y < self.manager.WINSIZE[1] - self.height:
                         self.y += 5
                 if pygame.key.get_pressed()[K_UP]:
@@ -43,7 +46,7 @@ class Player(box.Box):
                         self.right = 1
                 if pygame.key.get_pressed()[K_SPACE]:
                         for i in range(100):
-                                Bullet(velocity=(random.random()*5-2.5,random.random()*5-2.5),pos=(100,100),color=THECOLORS['white'])
+                                Bullet(velocity=(random.random()*5-2.5,random.random()*5-2.5),pos=(self.x+self.width/2,self.y+self.height/2),color=THECOLORS['white'])
 		if True:#pygame.key.get_pressed()[K_SPACE]: 
                         for i in range(10):
                                 if self.up == 1:
@@ -107,6 +110,8 @@ class Bullet(box.Box):
 def main():
         world = manager.World()
         Player()
+        for i in range(10):
+                manager.MyFont(string="Random!!!",pos=(random.random()*400,random.random()*400),status=50)
         #Target()
         world.run()
         
