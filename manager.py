@@ -12,53 +12,67 @@ class World:
 		self.objs = []
 		self.objs2 = []
 		self.WINSIZE = 640,480
-                pygame.init()
-                self.screen = pygame.display.set_mode(self.WINSIZE,0,8)
-                pygame.display.set_caption('Game!')
+		pygame.init()
+		self.screen = pygame.display.set_mode(self.WINSIZE,0,8)
+		pygame.display.set_caption('Game!')
 
-                self.screen.fill(THECOLORS["black"])
-                self.clock = pygame.time.Clock()
-                gameobject.GameObject.manager = self
-                gameobject.GameObject.screen = self.screen
+		self.screen.fill(THECOLORS["black"])
+		self.clock = pygame.time.Clock()
+		gameobject.GameObject.manager = self
+		gameobject.GameObject.screen = self.screen
 
-                self.font = pygame.font.Font(None, 72)
-                self.custom_ev = []
+		self.font = pygame.font.Font(None, 72)
+		self.custom_ev = []
+
+		self.FPS = 30
+		self.displace = 0
+		self.top = Border("Top")
+		self.bottom = Border("Bottom")
+		self.right = Border("Right")
+		self.left = Border("Left")
 	def add(self,obj):
 		self.objs2 += [obj]
 	def update(self):
-                for i in self.objs2:
-                        self.objs += [i]
-                self.objs2 = []
-                for i in self.objs:
-                        if i.status <= 0:
-                                self.destroy(i)
-
-                # Update Objects
+		for i in self.objs2:
+				self.objs += [i]
+		self.objs2 = []
 		for i in self.objs:
+				if i.status <= 0:
+						self.destroy(i)
+			
+		for i in self.objs:
+			# update objects
 			i.update()
+			# check collsions with borders
+			if i.x < 0:
+				i.collision(self.left)
+			if i.y < 0:
+				i.collision(self.top)
+			if i.x > self.WINSIZE[0]:
+				i.collision(self.right)
+			if i.y > self.WINSIZE[1]:
+				i.collision(self.bottom)
+			# update displacements (for side-scrolling)
+			
+			# check for colllsions with other objects
+			for j in self.objs:
+					if i.name == j.name:
+							continue
+					if i.y + i.height < j.y:
+							continue
+					if i.y > j.y + j.height:
+							continue
+					if i.x + i.width < j.x:
+							continue
+					if i.x > j.x + j.width:
+							continue
 
+					#print "collision" + i.name + "," + j.name
+					i.collision(j)
+					j.collision(i)
 		for i in self.objs:
-                        if i.x < 0 or i.x > self.WINSIZE[0] or i.y < 0 or i.y > self.WINSIZE[1]:
-                                i.status = 0
-
-                # Check for collisions
-                for i in self.objs:
-                        for j in self.objs:
-                                if i.name == j.name:
-                                        continue
-                                if i.y + i.height < j.y:
-                                        continue
-                                if i.y > j.y + j.height:
-                                        continue
-                                if i.x + i.width < j.x:
-                                        continue
-                                if i.x > j.x + j.width:
-                                        continue
-
-                                #print "collision" + i.name + "," + j.name
-                                i.collision(j)
-                                j.collision(i)
-
+			i.x += self.displace
+		self.displace = 0
 	def draw(self):
 		self.screen.fill(THECOLORS['black'])
 		for i in self.objs:
@@ -94,8 +108,8 @@ class World:
                                     done = True
                                     break
                                 if( e.key == K_f ):
-                                    pygame.display.toggle_fullscreen()
-                self.clock.tick(30)
+                                    print str(self.objs)
+                self.clock.tick(self.FPS)
 
             print "Exiting!"
 
@@ -112,4 +126,10 @@ class MyFont(gameobject.GameObject):
                 self.manager.screen.blit(self.text,self.textpos)
         def update(self):
                 self.status -= 1
+				
+class Border(gameobject.GameObject):
+	def __init__(self,dir):
+		gameobject.GameObject.__init__(self)
+		self.dir = dir
+		self.name = "Border"
 	

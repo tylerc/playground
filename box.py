@@ -18,14 +18,13 @@ class Box(gameobject.GameObject):
 		self.bgcolor = background
 		self.boxcolor = boxcolor
 		self.rect = pygame.rect.Rect(self.x, self.y, self.width, self.height)
-
+                self.test = pygame.Surface((self.width,self.height))
 	def draw(self):
 		# Clear the old box
 		# pygame.draw.rect(self.screen, self.bgcolor, self.rect)
 		# Draw the new box
 		self.rect = pygame.rect.Rect(self.x, self.y, self.width, self.height)
 		pygame.draw.rect( self.screen, self.boxcolor, self.rect )
-		
 	def setBackgroundColor(self, color):
 		self.bgcolor=color
 		

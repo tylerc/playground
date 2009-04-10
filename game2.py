@@ -25,6 +25,7 @@ class Player(box.Box):
                 self.down = 0
                 self.left = 0
                 self.right = 0
+                self.manager.FPS = 60
 	#def draw(self)
         def destroy(self):
                 manager.MyFont("PWNED",(50,50),status=20)
@@ -106,7 +107,7 @@ class Bullet(box.Box):
 		Bullet.numOf -= 1
 	def collision(self,obj):
 		if obj.name == 'Border':
-			self.manager.destroy(self)
+			self.status = 0
 def main():
         world = manager.World()
         Player()

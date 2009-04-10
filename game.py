@@ -59,7 +59,7 @@ class Player(box.Box):
 #                        self.manager.destroy(self)
 class Bullet(box.Box):
 	numOf = 0
-	def __init__(self,pos=(50,50),velocity=(5,0),color=THECOLORS['cyan'],home=1,life=125,size=(5,5)):
+	def __init__(self,pos=(50,50),velocity=(5,0),color=THECOLORS['cyan'],home=1,life=100,size=(5,5)):
 		box.Box.__init__(self,pos=pos,size=size,boxcolor=color)
 		self.speed = 10
 		self.name = 'Bullet'
@@ -85,8 +85,8 @@ class Bullet(box.Box):
 	def destroy(self):
 		Bullet.numOf -= 1
 	def collision(self,obj):
-		if obj.name == 'Border':
-			self.manager.destroy(self)
+		if obj.name == "Border":
+			self.status = 0
 def main():
         world = manager.World()
         Player()
