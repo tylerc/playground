@@ -89,20 +89,20 @@ class Bullet(box.Box):
 		self.home = home
 		self.status = life
 	def update(self):
-		self.status-=10
+                self.status-=10
 		self.x += self.velocity[0]
 		self.y += self.velocity[1]
 		if self.status <= 0:
-				self.manager.destroy(self)
-				if self.home==3 and random.random()*10 >=9:
-						#Bullet(velocity=(random.random()*10+2,random.random()*6-3),pos=(self.x,self.y),color=THECOLORS['gray'],home=4)
-						Bullet(velocity=self.velocity,pos=(self.x,self.y),color=THECOLORS['gray'],home=4)
-				if self.home==2 and random.random()*10 >=9:
-						#Bullet(velocity=(random.random()*10+2,random.random()*6-3),pos=(self.x,self.y),color=THECOLORS['blue'],home=3)
-						Bullet(velocity=self.velocity,pos=(self.x,self.y),color=THECOLORS['blue'],home=3)
-				if self.home==1 and random.random()*10 >=9:
-						Bullet(velocity=self.velocity,pos=(self.x,self.y),color=THECOLORS['cyan'],home=2)
-						#Bullet(velocity=(random.random()*10+2,random.random()*6-3),pos=(self.x,self.y),color=THECOLORS['cyan'],home=2)
+                        self.manager.destroy(self)
+                if self.home==3 and random.random()*10 >=9:
+                        #Bullet(velocity=(random.random()*10+2,random.random()*6-3),pos=(self.x,self.y),color=THECOLORS['gray'],home=4)
+                        Bullet(velocity=self.velocity,pos=(self.x,self.y),color=THECOLORS['gray'],home=4)
+                if self.home==2 and random.random()*10 >=9:
+                        #Bullet(velocity=(random.random()*10+2,random.random()*6-3),pos=(self.x,self.y),color=THECOLORS['blue'],home=3)
+                        Bullet(velocity=self.velocity,pos=(self.x,self.y),color=THECOLORS['blue'],home=3)
+                if self.home==1 and random.random()*10 >=9:
+                        Bullet(velocity=self.velocity,pos=(self.x,self.y),color=THECOLORS['cyan'],home=2)
+                        #Bullet(velocity=(random.random()*10+2,random.random()*6-3),pos=(self.x,self.y),color=THECOLORS['cyan'],home=2)
 	def destroy(self):
 		Bullet.numOf -= 1
 	def collision(self,obj):
