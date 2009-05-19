@@ -89,7 +89,7 @@ class Platform(box.Box):
 		#for x in range(5):
 			for i in range(6):
 				for j in range(6):
-					Bit(pos=(self.x+5*j,self.y+5*i),vel=[i+5,j+3])
+					Bit(pos=(self.x+5**j,self.y+5**i),vel=[-i-5,-j-3])
 
 class Bit(box.Box):
 	numOf = 0
@@ -110,7 +110,7 @@ class Bit(box.Box):
 		if Bit.numOf == 0:
 			for i in range(20):
 				for j in range(15):
-					Bit(pos=(500+5*j,300+5*i),vel=[-j,-i])
+					Bit(pos=(600+5*j,300+5*i),vel=[-j,-i])
 		
 class Flag(box.Box):
 	def __init__(self):
@@ -119,12 +119,11 @@ class Flag(box.Box):
 def main():
 	world = manager.World()
 	#for i in [[50,400],[80,400],[110,400],[140,400]]:
-	for i in range(200):
-		Platform(pos=(2,400),size=(2,2))
 	#Platform(pos = (50,400))
-	#for i in range(15):
-	#	for j in range(15):
-	#		Bit(pos=(500+5*j,300+5*i),vel=[-i,-j])
+	for i in range(6):
+		for j in range(15):
+			#Bit(pos=(500+5*j,300+5*i),vel=[-i,-j])
+			Platform(pos=(300+31*j,400),size=(300000,3000))
 		
 	Player()
 	#Flag()
