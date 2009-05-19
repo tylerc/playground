@@ -15,3 +15,9 @@ class Pic(gameobject.GameObject):
 		self.image = pygame.image.load(image)
 	def draw(self):
 		self.screen.blit(self.image, (self.x, self.y))
+
+# Example Usage:
+if __name__ == "__main__":
+	world = manager.World()
+	Pic("coolness.png")
+	world.run()
