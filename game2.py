@@ -72,12 +72,6 @@ class Player(box.Box):
                 self.down = 0
                 self.left = 0
                 self.right = 0
-#class Target(box.Box):
-#        def __init__(self):
-#                box.Box.__init__(self,pos=(100,100),boxcolor=THECOLORS['red'])
-#        def collision(self,obj):
-#                if obj.name == 'bullet':
-#                        self.manager.destroy(self)
 class Bullet(box.Box):
 	numOf = 0
 	def __init__(self,pos=(50,50),velocity=(5,0),color=THECOLORS['cyan'],home=1,life=75,size=(5,5)):
@@ -111,7 +105,6 @@ class Bullet(box.Box):
 def main():
         world = manager.World()
         Player()
-        #Target()
         world.run()
         
 if __name__=="__main__":
