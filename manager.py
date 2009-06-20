@@ -137,7 +137,7 @@ class MyFont(gameobject.GameObject):
 	def draw(self):
 		self.manager.screen.blit(self.text,self.textpos)
 	def update(self):
-		self.status -= 1
+		#self.status -= 1
 		self.text = self.manager.font.render(self.string, 1, THECOLORS['blue'], THECOLORS['white'])
 			
 class Border(gameobject.GameObject):
