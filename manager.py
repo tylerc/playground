@@ -67,7 +67,6 @@ class World:
 				if i.x > j.x + j.width:
 					continue
 
-				#print "collision" + i.name + "," + j.name
 				i.collision(j)
 				j.collision(i)
 		for i in self.objs:
@@ -95,7 +94,6 @@ class World:
 			self.draw()
 			
 			# Drawing finished this iteration?  Update the screen
-			#pygame.display.update()
 			pygame.display.flip()
 			
 			# Event Handling:
@@ -137,7 +135,6 @@ class MyFont(gameobject.GameObject):
 	def draw(self):
 		self.manager.screen.blit(self.text,self.textpos)
 	def update(self):
-		#self.status -= 1
 		self.text = self.manager.font.render(self.string, 1, THECOLORS['blue'], THECOLORS['white'])
 			
 class Border(gameobject.GameObject):
