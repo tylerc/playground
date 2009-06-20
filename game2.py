@@ -111,8 +111,6 @@ class Bullet(box.Box):
 def main():
         world = manager.World()
         Player()
-        for i in range(10):
-                manager.MyFont(string="Random!!!",pos=(random.random()*400,random.random()*400),status=50)
         #Target()
         world.run()
         
